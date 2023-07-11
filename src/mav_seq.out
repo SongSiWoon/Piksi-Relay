@@ -1,0 +1,482 @@
+Bind Status = 0
+Setsockopt Status = 0
+piksi port : /dev/ttyACM1
+lora port : /dev/ttyUSB0
+test
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 47
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 0
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 1
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 2
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 3
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 5
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 6
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 4
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 11
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 12
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 13
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 14
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 16
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 19
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 15
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 24
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 25
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 26
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 27
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 29
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 32
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 28
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 36
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 38
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 39
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 40
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 42
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 46
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 41
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 48
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 50
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 51
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 52
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 54
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 58
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 53
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 60
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 62
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 63
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 64
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 66
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 69
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 65
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 72
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 74
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 75
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 76
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 78
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 82
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 77
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 84
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 86
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 87
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 88
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 90
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 94
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 89
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 96
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 98
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 99
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 100
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 102
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 106
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 101
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 108
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 110
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 111
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 112
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 114
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 118
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 113
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 120
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 122
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 123
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 124
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 126
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 130
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 125
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 132
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 134
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 135
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 136
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 138
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 141
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 137
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 144
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 146
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 147
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 148
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 150
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 154
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 149
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 156
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 158
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 159
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 160
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 162
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 166
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 161
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 168
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 170
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 171
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 172
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 174
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 178
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 173
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 180
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 182
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 183
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 184
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 186
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 189
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 185
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 192
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 194
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 195
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 196
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 198
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 202
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 197
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 204
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 206
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 207
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 208
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 210
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 213
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 209
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 216
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 218
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 219
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 220
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 222
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 225
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 221
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 228
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 230
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 231
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 232
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 234
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 238
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 233
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 240
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 242
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 243
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 244
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 246
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 250
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 245
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 252
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 254
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 255
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 0
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 2
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 5
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 1
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 8
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 10
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 11
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 12
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 14
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 18
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 13
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 20
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 22
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 23
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 24
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 26
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 29
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 25
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 32
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 34
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 35
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 36
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 38
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 42
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 37
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 44
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 46
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 47
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 48
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 50
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 54
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 49
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 56
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 58
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 59
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 60
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 62
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 65
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 61
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 68
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 70
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 71
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 72
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 74
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 77
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 73
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 80
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 82
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 83
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 84
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 86
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 89
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 85
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 92
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 94
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 95
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 96
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 98
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 101
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 97
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 104
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 106
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 107
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 108
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 110
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 114
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 109
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 116
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 118
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 119
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 120
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 122
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 126
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 121
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 128
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 130
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 131
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 132
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 134
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 137
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 133
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 140
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 142
+MSG_OBS 0x8992 9 (164)
+MSG_OBS mavlink seq : 143
+MSG_OBS 0x8992 6 (113)
+MSG_OBS mavlink seq : 144
+MSG_BASE_POS_ECEF  len:24
+MSG_BASE_POS_ECEF mavlink seq : 146
+MSG_GLO_BIASES  len:9
+MSG_GLO_BIASES mavlink seq : 149
+MSG_OBS 0x8992 9 

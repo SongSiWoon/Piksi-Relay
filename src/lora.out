@@ -1,0 +1,203 @@
+Bind Status = 0
+Setsockopt Status = 0
+piksi port : /dev/ttyACM1
+lora port : /dev/ttyUSB0
+test
+MSG_GLO_BIASES  len:9
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 6 (113)
+MSG_BASE_POS_ECEF  len:24
+MSG_GLO_BIASES  len:9
+mavlink seq : 0
+mavlink seq : 1
+mavlink seq : 2
+mavlink seq : 3
+mavlink seq : 4
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 6 (113)
+MSG_BASE_POS_ECEF  len:24
+mavlink seq : 5
+mavlink seq : 6
+mavlink seq : 7
+mavlink seq : 12
+MSG_GLO_BIASES  len:9
+mavlink seq : 13
+mavlink seq : 14
+mavlink seq : 15
+mavlink seq : 16
+mavlink seq : 17
+mavlink seq : 21
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 6 (113)
+MSG_BASE_POS_ECEF  len:24
+mavlink seq : 25
+mavlink seq : 26
+mavlink seq : 27
+mavlink seq : 28
+MSG_GLO_BIASES  len:9
+mavlink seq : 29
+mavlink seq : 31
+mavlink seq : 35
+MSG_OBS 0x8992 9 (164)
+mavlink seq : 37
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 6 (113)
+MSG_BASE_POS_ECEF  len:24
+mavlink seq : 39
+mavlink seq : 40
+mavlink seq : 41
+mavlink seq : 42
+MSG_GLO_BIASES  len:9
+mavlink seq : 43
+mavlink seq : 47
+MSG_OBS 0x8992 9 (164)
+mavlink seq : 49
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 6 (113)
+MSG_BASE_POS_ECEF  len:24
+mavlink seq : 51
+mavlink seq : 52
+mavlink seq : 53
+MSG_GLO_BIASES  len:9
+mavlink seq : 54
+mavlink seq : 55
+mavlink seq : 58
+MSG_OBS 0x8992 9 (164)
+mavlink seq : 61
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 6 (113)
+MSG_BASE_POS_ECEF  len:24
+mavlink seq : 63
+mavlink seq : 64
+mavlink seq : 65
+MSG_GLO_BIASES  len:9
+mavlink seq : 66
+mavlink seq : 67
+mavlink seq : 70
+MSG_OBS 0x8992 9 (164)
+mavlink seq : 73
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 6 (113)
+MSG_BASE_POS_ECEF  len:24
+mavlink seq : 75
+mavlink seq : 76
+mavlink seq : 77
+mavlink seq : 78
+MSG_GLO_BIASES  len:9
+mavlink seq : 79
+mavlink seq : 84
+MSG_OBS 0x8992 9 (164)
+mavlink seq : 85
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 6 (113)
+MSG_BASE_POS_ECEF  len:24
+mavlink seq : 87
+mavlink seq : 88
+mavlink seq : 89
+mavlink seq : 90
+MSG_GLO_BIASES  len:9
+mavlink seq : 91
+mavlink seq : 95
+MSG_OBS 0x8992 9 (164)
+mavlink seq : 97
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 6 (113)
+MSG_BASE_POS_ECEF  len:24
+mavlink seq : 99
+mavlink seq : 100
+mavlink seq : 101
+mavlink seq : 102
+MSG_GLO_BIASES  len:9
+mavlink seq : 103
+mavlink seq : 106
+MSG_OBS 0x8992 9 (164)
+mavlink seq : 109
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 6 (113)
+MSG_BASE_POS_ECEF  len:24
+mavlink seq : 111
+mavlink seq : 112
+mavlink seq : 113
+mavlink seq : 114
+MSG_GLO_BIASES  len:9
+mavlink seq : 115
+mavlink seq : 118
+MSG_OBS 0x8992 9 (164)
+mavlink seq : 121
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 6 (113)
+MSG_BASE_POS_ECEF  len:24
+mavlink seq : 123
+mavlink seq : 124
+mavlink seq : 125
+MSG_GLO_BIASES  len:9
+mavlink seq : 126
+mavlink seq : 127
+mavlink seq : 131
+MSG_OBS 0x8992 9 (164)
+mavlink seq : 133
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 6 (113)
+MSG_BASE_POS_ECEF  len:24
+mavlink seq : 135
+mavlink seq : 136
+mavlink seq : 137
+MSG_GLO_BIASES  len:9
+mavlink seq : 138
+mavlink seq : 139
+mavlink seq : 142
+MSG_OBS 0x8992 9 (164)
+mavlink seq : 145
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 6 (113)
+MSG_BASE_POS_ECEF  len:24
+mavlink seq : 147
+mavlink seq : 148
+mavlink seq : 149
+mavlink seq : 150
+MSG_GLO_BIASES  len:9
+mavlink seq : 151
+mavlink seq : 155
+MSG_OBS 0x8992 9 (164)
+mavlink seq : 157
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 9 (164)
+MSG_OBS 0x8992 6 (113)
+MSG_BASE_POS_ECEF  len:24
+mavlink seq : 159
+mavlink seq : 160
+mavlink seq : 161
+MSG_GLO_BIASES  len:9
+mavlink seq : 162
+mavlink seq : 163
+m
