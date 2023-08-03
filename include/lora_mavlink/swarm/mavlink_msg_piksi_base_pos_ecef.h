@@ -7,17 +7,19 @@
 typedef struct __mavlink_piksi_base_pos_ecef_t {
  uint16_t sender_id; /*<  base_pos_ecef sender id*/
  uint16_t msg_type; /*<  message type*/
+ uint16_t crc; /*<  sbp crc*/
+ uint8_t seq; /*<  message sequence*/
  uint8_t len; /*<  base_pos_ecef data length*/
  uint8_t data[24]; /*<  base_pos_ecef data*/
 } mavlink_piksi_base_pos_ecef_t;
 
-#define MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_LEN 29
-#define MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_MIN_LEN 29
-#define MAVLINK_MSG_ID_182_LEN 29
-#define MAVLINK_MSG_ID_182_MIN_LEN 29
+#define MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_LEN 32
+#define MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_MIN_LEN 32
+#define MAVLINK_MSG_ID_182_LEN 32
+#define MAVLINK_MSG_ID_182_MIN_LEN 32
 
-#define MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_CRC 221
-#define MAVLINK_MSG_ID_182_CRC 221
+#define MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_CRC 61
+#define MAVLINK_MSG_ID_182_CRC 61
 
 #define MAVLINK_MSG_PIKSI_BASE_POS_ECEF_FIELD_DATA_LEN 24
 
@@ -25,21 +27,25 @@ typedef struct __mavlink_piksi_base_pos_ecef_t {
 #define MAVLINK_MESSAGE_INFO_PIKSI_BASE_POS_ECEF { \
     182, \
     "PIKSI_BASE_POS_ECEF", \
-    4, \
+    6, \
     {  { "sender_id", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_piksi_base_pos_ecef_t, sender_id) }, \
          { "msg_type", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_piksi_base_pos_ecef_t, msg_type) }, \
-         { "len", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_piksi_base_pos_ecef_t, len) }, \
-         { "data", NULL, MAVLINK_TYPE_UINT8_T, 24, 5, offsetof(mavlink_piksi_base_pos_ecef_t, data) }, \
+         { "seq", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_piksi_base_pos_ecef_t, seq) }, \
+         { "crc", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_piksi_base_pos_ecef_t, crc) }, \
+         { "len", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_piksi_base_pos_ecef_t, len) }, \
+         { "data", NULL, MAVLINK_TYPE_UINT8_T, 24, 8, offsetof(mavlink_piksi_base_pos_ecef_t, data) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_PIKSI_BASE_POS_ECEF { \
     "PIKSI_BASE_POS_ECEF", \
-    4, \
+    6, \
     {  { "sender_id", NULL, MAVLINK_TYPE_UINT16_T, 0, 0, offsetof(mavlink_piksi_base_pos_ecef_t, sender_id) }, \
          { "msg_type", NULL, MAVLINK_TYPE_UINT16_T, 0, 2, offsetof(mavlink_piksi_base_pos_ecef_t, msg_type) }, \
-         { "len", NULL, MAVLINK_TYPE_UINT8_T, 0, 4, offsetof(mavlink_piksi_base_pos_ecef_t, len) }, \
-         { "data", NULL, MAVLINK_TYPE_UINT8_T, 24, 5, offsetof(mavlink_piksi_base_pos_ecef_t, data) }, \
+         { "seq", NULL, MAVLINK_TYPE_UINT8_T, 0, 6, offsetof(mavlink_piksi_base_pos_ecef_t, seq) }, \
+         { "crc", NULL, MAVLINK_TYPE_UINT16_T, 0, 4, offsetof(mavlink_piksi_base_pos_ecef_t, crc) }, \
+         { "len", NULL, MAVLINK_TYPE_UINT8_T, 0, 7, offsetof(mavlink_piksi_base_pos_ecef_t, len) }, \
+         { "data", NULL, MAVLINK_TYPE_UINT8_T, 24, 8, offsetof(mavlink_piksi_base_pos_ecef_t, data) }, \
          } \
 }
 #endif
@@ -52,24 +58,30 @@ typedef struct __mavlink_piksi_base_pos_ecef_t {
  *
  * @param sender_id  base_pos_ecef sender id
  * @param msg_type  message type
+ * @param seq  message sequence
+ * @param crc  sbp crc
  * @param len  base_pos_ecef data length
  * @param data  base_pos_ecef data
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_piksi_base_pos_ecef_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint16_t sender_id, uint16_t msg_type, uint8_t len, const uint8_t *data)
+                               uint16_t sender_id, uint16_t msg_type, uint8_t seq, uint16_t crc, uint8_t len, const uint8_t *data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_LEN];
     _mav_put_uint16_t(buf, 0, sender_id);
     _mav_put_uint16_t(buf, 2, msg_type);
-    _mav_put_uint8_t(buf, 4, len);
-    _mav_put_uint8_t_array(buf, 5, data, 24);
+    _mav_put_uint16_t(buf, 4, crc);
+    _mav_put_uint8_t(buf, 6, seq);
+    _mav_put_uint8_t(buf, 7, len);
+    _mav_put_uint8_t_array(buf, 8, data, 24);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_LEN);
 #else
     mavlink_piksi_base_pos_ecef_t packet;
     packet.sender_id = sender_id;
     packet.msg_type = msg_type;
+    packet.crc = crc;
+    packet.seq = seq;
     packet.len = len;
     mav_array_memcpy(packet.data, data, sizeof(uint8_t)*24);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_LEN);
@@ -87,25 +99,31 @@ static inline uint16_t mavlink_msg_piksi_base_pos_ecef_pack(uint8_t system_id, u
  * @param msg The MAVLink message to compress the data into
  * @param sender_id  base_pos_ecef sender id
  * @param msg_type  message type
+ * @param seq  message sequence
+ * @param crc  sbp crc
  * @param len  base_pos_ecef data length
  * @param data  base_pos_ecef data
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_piksi_base_pos_ecef_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint16_t sender_id,uint16_t msg_type,uint8_t len,const uint8_t *data)
+                                   uint16_t sender_id,uint16_t msg_type,uint8_t seq,uint16_t crc,uint8_t len,const uint8_t *data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_LEN];
     _mav_put_uint16_t(buf, 0, sender_id);
     _mav_put_uint16_t(buf, 2, msg_type);
-    _mav_put_uint8_t(buf, 4, len);
-    _mav_put_uint8_t_array(buf, 5, data, 24);
+    _mav_put_uint16_t(buf, 4, crc);
+    _mav_put_uint8_t(buf, 6, seq);
+    _mav_put_uint8_t(buf, 7, len);
+    _mav_put_uint8_t_array(buf, 8, data, 24);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_LEN);
 #else
     mavlink_piksi_base_pos_ecef_t packet;
     packet.sender_id = sender_id;
     packet.msg_type = msg_type;
+    packet.crc = crc;
+    packet.seq = seq;
     packet.len = len;
     mav_array_memcpy(packet.data, data, sizeof(uint8_t)*24);
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_LEN);
@@ -125,7 +143,7 @@ static inline uint16_t mavlink_msg_piksi_base_pos_ecef_pack_chan(uint8_t system_
  */
 static inline uint16_t mavlink_msg_piksi_base_pos_ecef_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_piksi_base_pos_ecef_t* piksi_base_pos_ecef)
 {
-    return mavlink_msg_piksi_base_pos_ecef_pack(system_id, component_id, msg, piksi_base_pos_ecef->sender_id, piksi_base_pos_ecef->msg_type, piksi_base_pos_ecef->len, piksi_base_pos_ecef->data);
+    return mavlink_msg_piksi_base_pos_ecef_pack(system_id, component_id, msg, piksi_base_pos_ecef->sender_id, piksi_base_pos_ecef->msg_type, piksi_base_pos_ecef->seq, piksi_base_pos_ecef->crc, piksi_base_pos_ecef->len, piksi_base_pos_ecef->data);
 }
 
 /**
@@ -139,7 +157,7 @@ static inline uint16_t mavlink_msg_piksi_base_pos_ecef_encode(uint8_t system_id,
  */
 static inline uint16_t mavlink_msg_piksi_base_pos_ecef_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_piksi_base_pos_ecef_t* piksi_base_pos_ecef)
 {
-    return mavlink_msg_piksi_base_pos_ecef_pack_chan(system_id, component_id, chan, msg, piksi_base_pos_ecef->sender_id, piksi_base_pos_ecef->msg_type, piksi_base_pos_ecef->len, piksi_base_pos_ecef->data);
+    return mavlink_msg_piksi_base_pos_ecef_pack_chan(system_id, component_id, chan, msg, piksi_base_pos_ecef->sender_id, piksi_base_pos_ecef->msg_type, piksi_base_pos_ecef->seq, piksi_base_pos_ecef->crc, piksi_base_pos_ecef->len, piksi_base_pos_ecef->data);
 }
 
 /**
@@ -148,24 +166,30 @@ static inline uint16_t mavlink_msg_piksi_base_pos_ecef_encode_chan(uint8_t syste
  *
  * @param sender_id  base_pos_ecef sender id
  * @param msg_type  message type
+ * @param seq  message sequence
+ * @param crc  sbp crc
  * @param len  base_pos_ecef data length
  * @param data  base_pos_ecef data
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_piksi_base_pos_ecef_send(mavlink_channel_t chan, uint16_t sender_id, uint16_t msg_type, uint8_t len, const uint8_t *data)
+static inline void mavlink_msg_piksi_base_pos_ecef_send(mavlink_channel_t chan, uint16_t sender_id, uint16_t msg_type, uint8_t seq, uint16_t crc, uint8_t len, const uint8_t *data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_LEN];
     _mav_put_uint16_t(buf, 0, sender_id);
     _mav_put_uint16_t(buf, 2, msg_type);
-    _mav_put_uint8_t(buf, 4, len);
-    _mav_put_uint8_t_array(buf, 5, data, 24);
+    _mav_put_uint16_t(buf, 4, crc);
+    _mav_put_uint8_t(buf, 6, seq);
+    _mav_put_uint8_t(buf, 7, len);
+    _mav_put_uint8_t_array(buf, 8, data, 24);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF, buf, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_MIN_LEN, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_LEN, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_CRC);
 #else
     mavlink_piksi_base_pos_ecef_t packet;
     packet.sender_id = sender_id;
     packet.msg_type = msg_type;
+    packet.crc = crc;
+    packet.seq = seq;
     packet.len = len;
     mav_array_memcpy(packet.data, data, sizeof(uint8_t)*24);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF, (const char *)&packet, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_MIN_LEN, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_LEN, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_CRC);
@@ -180,7 +204,7 @@ static inline void mavlink_msg_piksi_base_pos_ecef_send(mavlink_channel_t chan, 
 static inline void mavlink_msg_piksi_base_pos_ecef_send_struct(mavlink_channel_t chan, const mavlink_piksi_base_pos_ecef_t* piksi_base_pos_ecef)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_piksi_base_pos_ecef_send(chan, piksi_base_pos_ecef->sender_id, piksi_base_pos_ecef->msg_type, piksi_base_pos_ecef->len, piksi_base_pos_ecef->data);
+    mavlink_msg_piksi_base_pos_ecef_send(chan, piksi_base_pos_ecef->sender_id, piksi_base_pos_ecef->msg_type, piksi_base_pos_ecef->seq, piksi_base_pos_ecef->crc, piksi_base_pos_ecef->len, piksi_base_pos_ecef->data);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF, (const char *)piksi_base_pos_ecef, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_MIN_LEN, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_LEN, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_CRC);
 #endif
@@ -194,19 +218,23 @@ static inline void mavlink_msg_piksi_base_pos_ecef_send_struct(mavlink_channel_t
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_piksi_base_pos_ecef_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint16_t sender_id, uint16_t msg_type, uint8_t len, const uint8_t *data)
+static inline void mavlink_msg_piksi_base_pos_ecef_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint16_t sender_id, uint16_t msg_type, uint8_t seq, uint16_t crc, uint8_t len, const uint8_t *data)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_uint16_t(buf, 0, sender_id);
     _mav_put_uint16_t(buf, 2, msg_type);
-    _mav_put_uint8_t(buf, 4, len);
-    _mav_put_uint8_t_array(buf, 5, data, 24);
+    _mav_put_uint16_t(buf, 4, crc);
+    _mav_put_uint8_t(buf, 6, seq);
+    _mav_put_uint8_t(buf, 7, len);
+    _mav_put_uint8_t_array(buf, 8, data, 24);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF, buf, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_MIN_LEN, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_LEN, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_CRC);
 #else
     mavlink_piksi_base_pos_ecef_t *packet = (mavlink_piksi_base_pos_ecef_t *)msgbuf;
     packet->sender_id = sender_id;
     packet->msg_type = msg_type;
+    packet->crc = crc;
+    packet->seq = seq;
     packet->len = len;
     mav_array_memcpy(packet->data, data, sizeof(uint8_t)*24);
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF, (const char *)packet, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_MIN_LEN, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_LEN, MAVLINK_MSG_ID_PIKSI_BASE_POS_ECEF_CRC);
@@ -240,13 +268,33 @@ static inline uint16_t mavlink_msg_piksi_base_pos_ecef_get_msg_type(const mavlin
 }
 
 /**
+ * @brief Get field seq from piksi_base_pos_ecef message
+ *
+ * @return  message sequence
+ */
+static inline uint8_t mavlink_msg_piksi_base_pos_ecef_get_seq(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint8_t(msg,  6);
+}
+
+/**
+ * @brief Get field crc from piksi_base_pos_ecef message
+ *
+ * @return  sbp crc
+ */
+static inline uint16_t mavlink_msg_piksi_base_pos_ecef_get_crc(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint16_t(msg,  4);
+}
+
+/**
  * @brief Get field len from piksi_base_pos_ecef message
  *
  * @return  base_pos_ecef data length
  */
 static inline uint8_t mavlink_msg_piksi_base_pos_ecef_get_len(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  4);
+    return _MAV_RETURN_uint8_t(msg,  7);
 }
 
 /**
@@ -256,7 +304,7 @@ static inline uint8_t mavlink_msg_piksi_base_pos_ecef_get_len(const mavlink_mess
  */
 static inline uint16_t mavlink_msg_piksi_base_pos_ecef_get_data(const mavlink_message_t* msg, uint8_t *data)
 {
-    return _MAV_RETURN_uint8_t_array(msg, data, 24,  5);
+    return _MAV_RETURN_uint8_t_array(msg, data, 24,  8);
 }
 
 /**
@@ -270,6 +318,8 @@ static inline void mavlink_msg_piksi_base_pos_ecef_decode(const mavlink_message_
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     piksi_base_pos_ecef->sender_id = mavlink_msg_piksi_base_pos_ecef_get_sender_id(msg);
     piksi_base_pos_ecef->msg_type = mavlink_msg_piksi_base_pos_ecef_get_msg_type(msg);
+    piksi_base_pos_ecef->crc = mavlink_msg_piksi_base_pos_ecef_get_crc(msg);
+    piksi_base_pos_ecef->seq = mavlink_msg_piksi_base_pos_ecef_get_seq(msg);
     piksi_base_pos_ecef->len = mavlink_msg_piksi_base_pos_ecef_get_len(msg);
     mavlink_msg_piksi_base_pos_ecef_get_data(msg, piksi_base_pos_ecef->data);
 #else

@@ -46,7 +46,7 @@
 #define BUFFER_LENGTH 2041
 uint8_t mavbuf[BUFFER_LENGTH];
 
-#define LORA_CHANNEL 4
+#define LORA_CHANNEL 80
 uint8_t _header[3] = {0xFF, 0xFF, (uint8_t)LORA_CHANNEL};
 
 int _g_serial_fd = 0;
@@ -96,7 +96,7 @@ sbp_msg_callbacks_node_t _pos_llh_callback_node;
 std::vector<mavlink_piksi_obs_t> _obs_vec;
 std::queue<mavlink_message_t> _mavlink_que;
 std::mutex mtx;
-
+uint8_t _sbp_seq = 0;
 
 long long time_ms()
 {
@@ -124,12 +124,14 @@ void basepos_callback(u16 sender_id, u8 len, u8 msg[], void *context)
 
     printf("MSG_BASE_POS_ECEF  len:%d\n", len);
     _basepos = *(msg_base_pos_ecef_t *)msg;
-
+    u16 crc = *(u16 *) context;
     // generate mavlink message
     mavlink_message_t message;
     mavlink_piksi_base_pos_ecef_t piksi_base_pos;
     piksi_base_pos.msg_type = SBP_MSG_BASE_POS_ECEF;
     piksi_base_pos.sender_id = sender_id;
+    piksi_base_pos.seq = _sbp_seq++;
+    piksi_base_pos.crc = crc;
     piksi_base_pos.len = len;
     memcpy(&piksi_base_pos.data, msg, len);
     mavlink_msg_piksi_base_pos_ecef_encode(255, 51, &message, &piksi_base_pos);
@@ -147,7 +149,7 @@ void obs_callback(u16 sender_id, u8 len, u8 msg[], void *context)
 {
     u8 obs_in_msg = (len - sizeof(observation_header_t)) / sizeof(packed_obs_content_t);
     printf("MSG_OBS 0x%0X %d (%d)\n", sender_id, obs_in_msg, len);
-
+    u16 crc = *(u16 *) context;
     if ( obs_in_msg == 0 ) {
         return;
     }
@@ -155,6 +157,8 @@ void obs_callback(u16 sender_id, u8 len, u8 msg[], void *context)
     mavlink_piksi_obs_t piksi_obs = {0, };
     piksi_obs.msg_type = SBP_MSG_OBS;
     piksi_obs.sender_id = sender_id;
+    piksi_obs.seq = _sbp_seq++;
+    piksi_obs.crc = crc;
     piksi_obs.len = len;
 //    printf("sender_id : %d\n", sender_id);
     memcpy(piksi_obs.data, msg, len);
@@ -172,13 +176,15 @@ void globiases_callback(u16 sender_id, u8 len, u8 msg[], void *context)
     uint8_t buffer[MAXBUF];
 
     printf("MSG_GLO_BIASES  len:%d\n", len);
-
+    u16 crc = *(u16 *) context;
     _globiases = *(msg_glo_biases_t *)msg;
 
     mavlink_message_t message;
     mavlink_piksi_glo_biases_t piksi_glo_biases;
     piksi_glo_biases.msg_type = SBP_MSG_GLO_BIASES;
     piksi_glo_biases.sender_id = sender_id;
+    piksi_glo_biases.seq = _sbp_seq++;
+    piksi_glo_biases.crc = crc;
     piksi_glo_biases.len = len;
     memcpy(piksi_glo_biases.data, msg, len);
     mavlink_msg_piksi_glo_biases_encode(255, 51, &message, &piksi_glo_biases);
@@ -199,10 +205,10 @@ void sbp_setup(void)
     sbp_state_init(&_sbp_state);
     printf("test\n");
     /* register callback function */
-    sbp_register_callback(&_sbp_state, SBP_MSG_OBS, &obs_callback, NULL, &_obs_callback_node);
+    sbp_register_callback(&_sbp_state, SBP_MSG_OBS, &obs_callback, &_sbp_state.crc, &_obs_callback_node);
     sbp_register_callback(&_sbp_state, SBP_MSG_HEARTBEAT, &heartbeat_callback, NULL, &_heartbeat_callback_node);
-    sbp_register_callback(&_sbp_state, SBP_MSG_BASE_POS_ECEF, &basepos_callback, NULL, &_basepos_callback_node);
-    sbp_register_callback(&_sbp_state, SBP_MSG_GLO_BIASES, &globiases_callback, NULL, &_globiases_callback_node);
+    sbp_register_callback(&_sbp_state, SBP_MSG_BASE_POS_ECEF, &basepos_callback, &_sbp_state.crc, &_basepos_callback_node);
+    sbp_register_callback(&_sbp_state, SBP_MSG_GLO_BIASES, &globiases_callback, &_sbp_state.crc, &_globiases_callback_node);
 }
 
 int setupSerial(char* device, uint32_t baudrate)
