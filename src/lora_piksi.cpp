@@ -417,7 +417,7 @@ int main(int argc, char ** argv)
         if ( status > 0 ) {
             if (now - before > 80 && !_obs_vec.empty()){
                 mavlink_msg_piksi_obs_encode(255, 51, &message, &_obs_vec.back());
-                 printf("WTF : %ld\n", _obs_vec.size());
+//                 printf("WTF : %ld\n", _obs_vec.size());
                 buflen = mavlink_msg_to_send_buffer(buffer, &message);
                 int sinlen = sizeof(struct sockaddr_in);
                 status = sendto(_sock, buffer, buflen, 0, (struct sockaddr *)&_sock_in, sinlen);

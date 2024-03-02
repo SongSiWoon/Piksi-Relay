@@ -17,6 +17,7 @@ typedef struct __mavlink_monitoring_t {
  float rtk_n; /*<  Rtk Baseline North coordinate*/
  float rtk_e; /*<  Rtk Baseline East coordinate*/
  float rtk_d; /*<  Rtk Baseline Down coordinate*/
+ uint16_t swarm_id; /*<  Swarm id for GCS*/
  uint8_t rtk_nbase; /*<  the number of base satellite*/
  uint8_t rtk_nrover; /*<  the number of rover satellite*/
  uint8_t battery; /*<  Battery (%)*/
@@ -25,13 +26,13 @@ typedef struct __mavlink_monitoring_t {
  uint8_t b; /*<  blue value (0~256)*/
 } mavlink_monitoring_t;
 
-#define MAVLINK_MSG_ID_MONITORING_LEN 54
-#define MAVLINK_MSG_ID_MONITORING_MIN_LEN 54
-#define MAVLINK_MSG_ID_184_LEN 54
-#define MAVLINK_MSG_ID_184_MIN_LEN 54
+#define MAVLINK_MSG_ID_MONITORING_LEN 56
+#define MAVLINK_MSG_ID_MONITORING_MIN_LEN 56
+#define MAVLINK_MSG_ID_184_LEN 56
+#define MAVLINK_MSG_ID_184_MIN_LEN 56
 
-#define MAVLINK_MSG_ID_MONITORING_CRC 96
-#define MAVLINK_MSG_ID_184_CRC 96
+#define MAVLINK_MSG_ID_MONITORING_CRC 206
+#define MAVLINK_MSG_ID_184_CRC 206
 
 
 
@@ -39,8 +40,9 @@ typedef struct __mavlink_monitoring_t {
 #define MAVLINK_MESSAGE_INFO_MONITORING { \
     184, \
     "MONITORING", \
-    18, \
-    {  { "tow", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_monitoring_t, tow) }, \
+    19, \
+    {  { "swarm_id", NULL, MAVLINK_TYPE_UINT16_T, 0, 48, offsetof(mavlink_monitoring_t, swarm_id) }, \
+         { "tow", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_monitoring_t, tow) }, \
          { "pos_x", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_monitoring_t, pos_x) }, \
          { "pos_y", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_monitoring_t, pos_y) }, \
          { "pos_z", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_monitoring_t, pos_z) }, \
@@ -49,12 +51,12 @@ typedef struct __mavlink_monitoring_t {
          { "pitch", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_monitoring_t, pitch) }, \
          { "status1", NULL, MAVLINK_TYPE_UINT32_T, 0, 28, offsetof(mavlink_monitoring_t, status1) }, \
          { "status2", NULL, MAVLINK_TYPE_UINT32_T, 0, 32, offsetof(mavlink_monitoring_t, status2) }, \
-         { "rtk_nbase", NULL, MAVLINK_TYPE_UINT8_T, 0, 48, offsetof(mavlink_monitoring_t, rtk_nbase) }, \
-         { "rtk_nrover", NULL, MAVLINK_TYPE_UINT8_T, 0, 49, offsetof(mavlink_monitoring_t, rtk_nrover) }, \
-         { "battery", NULL, MAVLINK_TYPE_UINT8_T, 0, 50, offsetof(mavlink_monitoring_t, battery) }, \
-         { "r", NULL, MAVLINK_TYPE_UINT8_T, 0, 51, offsetof(mavlink_monitoring_t, r) }, \
-         { "g", NULL, MAVLINK_TYPE_UINT8_T, 0, 52, offsetof(mavlink_monitoring_t, g) }, \
-         { "b", NULL, MAVLINK_TYPE_UINT8_T, 0, 53, offsetof(mavlink_monitoring_t, b) }, \
+         { "rtk_nbase", NULL, MAVLINK_TYPE_UINT8_T, 0, 50, offsetof(mavlink_monitoring_t, rtk_nbase) }, \
+         { "rtk_nrover", NULL, MAVLINK_TYPE_UINT8_T, 0, 51, offsetof(mavlink_monitoring_t, rtk_nrover) }, \
+         { "battery", NULL, MAVLINK_TYPE_UINT8_T, 0, 52, offsetof(mavlink_monitoring_t, battery) }, \
+         { "r", NULL, MAVLINK_TYPE_UINT8_T, 0, 53, offsetof(mavlink_monitoring_t, r) }, \
+         { "g", NULL, MAVLINK_TYPE_UINT8_T, 0, 54, offsetof(mavlink_monitoring_t, g) }, \
+         { "b", NULL, MAVLINK_TYPE_UINT8_T, 0, 55, offsetof(mavlink_monitoring_t, b) }, \
          { "rtk_n", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_monitoring_t, rtk_n) }, \
          { "rtk_e", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_monitoring_t, rtk_e) }, \
          { "rtk_d", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_monitoring_t, rtk_d) }, \
@@ -63,8 +65,9 @@ typedef struct __mavlink_monitoring_t {
 #else
 #define MAVLINK_MESSAGE_INFO_MONITORING { \
     "MONITORING", \
-    18, \
-    {  { "tow", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_monitoring_t, tow) }, \
+    19, \
+    {  { "swarm_id", NULL, MAVLINK_TYPE_UINT16_T, 0, 48, offsetof(mavlink_monitoring_t, swarm_id) }, \
+         { "tow", NULL, MAVLINK_TYPE_UINT32_T, 0, 0, offsetof(mavlink_monitoring_t, tow) }, \
          { "pos_x", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_monitoring_t, pos_x) }, \
          { "pos_y", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_monitoring_t, pos_y) }, \
          { "pos_z", NULL, MAVLINK_TYPE_FLOAT, 0, 12, offsetof(mavlink_monitoring_t, pos_z) }, \
@@ -73,12 +76,12 @@ typedef struct __mavlink_monitoring_t {
          { "pitch", NULL, MAVLINK_TYPE_FLOAT, 0, 24, offsetof(mavlink_monitoring_t, pitch) }, \
          { "status1", NULL, MAVLINK_TYPE_UINT32_T, 0, 28, offsetof(mavlink_monitoring_t, status1) }, \
          { "status2", NULL, MAVLINK_TYPE_UINT32_T, 0, 32, offsetof(mavlink_monitoring_t, status2) }, \
-         { "rtk_nbase", NULL, MAVLINK_TYPE_UINT8_T, 0, 48, offsetof(mavlink_monitoring_t, rtk_nbase) }, \
-         { "rtk_nrover", NULL, MAVLINK_TYPE_UINT8_T, 0, 49, offsetof(mavlink_monitoring_t, rtk_nrover) }, \
-         { "battery", NULL, MAVLINK_TYPE_UINT8_T, 0, 50, offsetof(mavlink_monitoring_t, battery) }, \
-         { "r", NULL, MAVLINK_TYPE_UINT8_T, 0, 51, offsetof(mavlink_monitoring_t, r) }, \
-         { "g", NULL, MAVLINK_TYPE_UINT8_T, 0, 52, offsetof(mavlink_monitoring_t, g) }, \
-         { "b", NULL, MAVLINK_TYPE_UINT8_T, 0, 53, offsetof(mavlink_monitoring_t, b) }, \
+         { "rtk_nbase", NULL, MAVLINK_TYPE_UINT8_T, 0, 50, offsetof(mavlink_monitoring_t, rtk_nbase) }, \
+         { "rtk_nrover", NULL, MAVLINK_TYPE_UINT8_T, 0, 51, offsetof(mavlink_monitoring_t, rtk_nrover) }, \
+         { "battery", NULL, MAVLINK_TYPE_UINT8_T, 0, 52, offsetof(mavlink_monitoring_t, battery) }, \
+         { "r", NULL, MAVLINK_TYPE_UINT8_T, 0, 53, offsetof(mavlink_monitoring_t, r) }, \
+         { "g", NULL, MAVLINK_TYPE_UINT8_T, 0, 54, offsetof(mavlink_monitoring_t, g) }, \
+         { "b", NULL, MAVLINK_TYPE_UINT8_T, 0, 55, offsetof(mavlink_monitoring_t, b) }, \
          { "rtk_n", NULL, MAVLINK_TYPE_FLOAT, 0, 36, offsetof(mavlink_monitoring_t, rtk_n) }, \
          { "rtk_e", NULL, MAVLINK_TYPE_FLOAT, 0, 40, offsetof(mavlink_monitoring_t, rtk_e) }, \
          { "rtk_d", NULL, MAVLINK_TYPE_FLOAT, 0, 44, offsetof(mavlink_monitoring_t, rtk_d) }, \
@@ -92,6 +95,7 @@ typedef struct __mavlink_monitoring_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
+ * @param swarm_id  Swarm id for GCS
  * @param tow  Time Of Week
  * @param pos_x  current position x
  * @param pos_y  current position y
@@ -113,7 +117,7 @@ typedef struct __mavlink_monitoring_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_monitoring_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint32_t tow, float pos_x, float pos_y, float pos_z, float head, float roll, float pitch, uint32_t status1, uint32_t status2, uint8_t rtk_nbase, uint8_t rtk_nrover, uint8_t battery, uint8_t r, uint8_t g, uint8_t b, float rtk_n, float rtk_e, float rtk_d)
+                               uint16_t swarm_id, uint32_t tow, float pos_x, float pos_y, float pos_z, float head, float roll, float pitch, uint32_t status1, uint32_t status2, uint8_t rtk_nbase, uint8_t rtk_nrover, uint8_t battery, uint8_t r, uint8_t g, uint8_t b, float rtk_n, float rtk_e, float rtk_d)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MONITORING_LEN];
@@ -129,12 +133,13 @@ static inline uint16_t mavlink_msg_monitoring_pack(uint8_t system_id, uint8_t co
     _mav_put_float(buf, 36, rtk_n);
     _mav_put_float(buf, 40, rtk_e);
     _mav_put_float(buf, 44, rtk_d);
-    _mav_put_uint8_t(buf, 48, rtk_nbase);
-    _mav_put_uint8_t(buf, 49, rtk_nrover);
-    _mav_put_uint8_t(buf, 50, battery);
-    _mav_put_uint8_t(buf, 51, r);
-    _mav_put_uint8_t(buf, 52, g);
-    _mav_put_uint8_t(buf, 53, b);
+    _mav_put_uint16_t(buf, 48, swarm_id);
+    _mav_put_uint8_t(buf, 50, rtk_nbase);
+    _mav_put_uint8_t(buf, 51, rtk_nrover);
+    _mav_put_uint8_t(buf, 52, battery);
+    _mav_put_uint8_t(buf, 53, r);
+    _mav_put_uint8_t(buf, 54, g);
+    _mav_put_uint8_t(buf, 55, b);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_MONITORING_LEN);
 #else
@@ -151,6 +156,7 @@ static inline uint16_t mavlink_msg_monitoring_pack(uint8_t system_id, uint8_t co
     packet.rtk_n = rtk_n;
     packet.rtk_e = rtk_e;
     packet.rtk_d = rtk_d;
+    packet.swarm_id = swarm_id;
     packet.rtk_nbase = rtk_nbase;
     packet.rtk_nrover = rtk_nrover;
     packet.battery = battery;
@@ -171,6 +177,7 @@ static inline uint16_t mavlink_msg_monitoring_pack(uint8_t system_id, uint8_t co
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
+ * @param swarm_id  Swarm id for GCS
  * @param tow  Time Of Week
  * @param pos_x  current position x
  * @param pos_y  current position y
@@ -193,7 +200,7 @@ static inline uint16_t mavlink_msg_monitoring_pack(uint8_t system_id, uint8_t co
  */
 static inline uint16_t mavlink_msg_monitoring_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint32_t tow,float pos_x,float pos_y,float pos_z,float head,float roll,float pitch,uint32_t status1,uint32_t status2,uint8_t rtk_nbase,uint8_t rtk_nrover,uint8_t battery,uint8_t r,uint8_t g,uint8_t b,float rtk_n,float rtk_e,float rtk_d)
+                                   uint16_t swarm_id,uint32_t tow,float pos_x,float pos_y,float pos_z,float head,float roll,float pitch,uint32_t status1,uint32_t status2,uint8_t rtk_nbase,uint8_t rtk_nrover,uint8_t battery,uint8_t r,uint8_t g,uint8_t b,float rtk_n,float rtk_e,float rtk_d)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MONITORING_LEN];
@@ -209,12 +216,13 @@ static inline uint16_t mavlink_msg_monitoring_pack_chan(uint8_t system_id, uint8
     _mav_put_float(buf, 36, rtk_n);
     _mav_put_float(buf, 40, rtk_e);
     _mav_put_float(buf, 44, rtk_d);
-    _mav_put_uint8_t(buf, 48, rtk_nbase);
-    _mav_put_uint8_t(buf, 49, rtk_nrover);
-    _mav_put_uint8_t(buf, 50, battery);
-    _mav_put_uint8_t(buf, 51, r);
-    _mav_put_uint8_t(buf, 52, g);
-    _mav_put_uint8_t(buf, 53, b);
+    _mav_put_uint16_t(buf, 48, swarm_id);
+    _mav_put_uint8_t(buf, 50, rtk_nbase);
+    _mav_put_uint8_t(buf, 51, rtk_nrover);
+    _mav_put_uint8_t(buf, 52, battery);
+    _mav_put_uint8_t(buf, 53, r);
+    _mav_put_uint8_t(buf, 54, g);
+    _mav_put_uint8_t(buf, 55, b);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_MONITORING_LEN);
 #else
@@ -231,6 +239,7 @@ static inline uint16_t mavlink_msg_monitoring_pack_chan(uint8_t system_id, uint8
     packet.rtk_n = rtk_n;
     packet.rtk_e = rtk_e;
     packet.rtk_d = rtk_d;
+    packet.swarm_id = swarm_id;
     packet.rtk_nbase = rtk_nbase;
     packet.rtk_nrover = rtk_nrover;
     packet.battery = battery;
@@ -255,7 +264,7 @@ static inline uint16_t mavlink_msg_monitoring_pack_chan(uint8_t system_id, uint8
  */
 static inline uint16_t mavlink_msg_monitoring_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_monitoring_t* monitoring)
 {
-    return mavlink_msg_monitoring_pack(system_id, component_id, msg, monitoring->tow, monitoring->pos_x, monitoring->pos_y, monitoring->pos_z, monitoring->head, monitoring->roll, monitoring->pitch, monitoring->status1, monitoring->status2, monitoring->rtk_nbase, monitoring->rtk_nrover, monitoring->battery, monitoring->r, monitoring->g, monitoring->b, monitoring->rtk_n, monitoring->rtk_e, monitoring->rtk_d);
+    return mavlink_msg_monitoring_pack(system_id, component_id, msg, monitoring->swarm_id, monitoring->tow, monitoring->pos_x, monitoring->pos_y, monitoring->pos_z, monitoring->head, monitoring->roll, monitoring->pitch, monitoring->status1, monitoring->status2, monitoring->rtk_nbase, monitoring->rtk_nrover, monitoring->battery, monitoring->r, monitoring->g, monitoring->b, monitoring->rtk_n, monitoring->rtk_e, monitoring->rtk_d);
 }
 
 /**
@@ -269,13 +278,14 @@ static inline uint16_t mavlink_msg_monitoring_encode(uint8_t system_id, uint8_t 
  */
 static inline uint16_t mavlink_msg_monitoring_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_monitoring_t* monitoring)
 {
-    return mavlink_msg_monitoring_pack_chan(system_id, component_id, chan, msg, monitoring->tow, monitoring->pos_x, monitoring->pos_y, monitoring->pos_z, monitoring->head, monitoring->roll, monitoring->pitch, monitoring->status1, monitoring->status2, monitoring->rtk_nbase, monitoring->rtk_nrover, monitoring->battery, monitoring->r, monitoring->g, monitoring->b, monitoring->rtk_n, monitoring->rtk_e, monitoring->rtk_d);
+    return mavlink_msg_monitoring_pack_chan(system_id, component_id, chan, msg, monitoring->swarm_id, monitoring->tow, monitoring->pos_x, monitoring->pos_y, monitoring->pos_z, monitoring->head, monitoring->roll, monitoring->pitch, monitoring->status1, monitoring->status2, monitoring->rtk_nbase, monitoring->rtk_nrover, monitoring->battery, monitoring->r, monitoring->g, monitoring->b, monitoring->rtk_n, monitoring->rtk_e, monitoring->rtk_d);
 }
 
 /**
  * @brief Send a monitoring message
  * @param chan MAVLink channel to send the message
  *
+ * @param swarm_id  Swarm id for GCS
  * @param tow  Time Of Week
  * @param pos_x  current position x
  * @param pos_y  current position y
@@ -297,7 +307,7 @@ static inline uint16_t mavlink_msg_monitoring_encode_chan(uint8_t system_id, uin
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_monitoring_send(mavlink_channel_t chan, uint32_t tow, float pos_x, float pos_y, float pos_z, float head, float roll, float pitch, uint32_t status1, uint32_t status2, uint8_t rtk_nbase, uint8_t rtk_nrover, uint8_t battery, uint8_t r, uint8_t g, uint8_t b, float rtk_n, float rtk_e, float rtk_d)
+static inline void mavlink_msg_monitoring_send(mavlink_channel_t chan, uint16_t swarm_id, uint32_t tow, float pos_x, float pos_y, float pos_z, float head, float roll, float pitch, uint32_t status1, uint32_t status2, uint8_t rtk_nbase, uint8_t rtk_nrover, uint8_t battery, uint8_t r, uint8_t g, uint8_t b, float rtk_n, float rtk_e, float rtk_d)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_MONITORING_LEN];
@@ -313,12 +323,13 @@ static inline void mavlink_msg_monitoring_send(mavlink_channel_t chan, uint32_t 
     _mav_put_float(buf, 36, rtk_n);
     _mav_put_float(buf, 40, rtk_e);
     _mav_put_float(buf, 44, rtk_d);
-    _mav_put_uint8_t(buf, 48, rtk_nbase);
-    _mav_put_uint8_t(buf, 49, rtk_nrover);
-    _mav_put_uint8_t(buf, 50, battery);
-    _mav_put_uint8_t(buf, 51, r);
-    _mav_put_uint8_t(buf, 52, g);
-    _mav_put_uint8_t(buf, 53, b);
+    _mav_put_uint16_t(buf, 48, swarm_id);
+    _mav_put_uint8_t(buf, 50, rtk_nbase);
+    _mav_put_uint8_t(buf, 51, rtk_nrover);
+    _mav_put_uint8_t(buf, 52, battery);
+    _mav_put_uint8_t(buf, 53, r);
+    _mav_put_uint8_t(buf, 54, g);
+    _mav_put_uint8_t(buf, 55, b);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MONITORING, buf, MAVLINK_MSG_ID_MONITORING_MIN_LEN, MAVLINK_MSG_ID_MONITORING_LEN, MAVLINK_MSG_ID_MONITORING_CRC);
 #else
@@ -335,6 +346,7 @@ static inline void mavlink_msg_monitoring_send(mavlink_channel_t chan, uint32_t 
     packet.rtk_n = rtk_n;
     packet.rtk_e = rtk_e;
     packet.rtk_d = rtk_d;
+    packet.swarm_id = swarm_id;
     packet.rtk_nbase = rtk_nbase;
     packet.rtk_nrover = rtk_nrover;
     packet.battery = battery;
@@ -354,7 +366,7 @@ static inline void mavlink_msg_monitoring_send(mavlink_channel_t chan, uint32_t 
 static inline void mavlink_msg_monitoring_send_struct(mavlink_channel_t chan, const mavlink_monitoring_t* monitoring)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_monitoring_send(chan, monitoring->tow, monitoring->pos_x, monitoring->pos_y, monitoring->pos_z, monitoring->head, monitoring->roll, monitoring->pitch, monitoring->status1, monitoring->status2, monitoring->rtk_nbase, monitoring->rtk_nrover, monitoring->battery, monitoring->r, monitoring->g, monitoring->b, monitoring->rtk_n, monitoring->rtk_e, monitoring->rtk_d);
+    mavlink_msg_monitoring_send(chan, monitoring->swarm_id, monitoring->tow, monitoring->pos_x, monitoring->pos_y, monitoring->pos_z, monitoring->head, monitoring->roll, monitoring->pitch, monitoring->status1, monitoring->status2, monitoring->rtk_nbase, monitoring->rtk_nrover, monitoring->battery, monitoring->r, monitoring->g, monitoring->b, monitoring->rtk_n, monitoring->rtk_e, monitoring->rtk_d);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MONITORING, (const char *)monitoring, MAVLINK_MSG_ID_MONITORING_MIN_LEN, MAVLINK_MSG_ID_MONITORING_LEN, MAVLINK_MSG_ID_MONITORING_CRC);
 #endif
@@ -368,7 +380,7 @@ static inline void mavlink_msg_monitoring_send_struct(mavlink_channel_t chan, co
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_monitoring_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint32_t tow, float pos_x, float pos_y, float pos_z, float head, float roll, float pitch, uint32_t status1, uint32_t status2, uint8_t rtk_nbase, uint8_t rtk_nrover, uint8_t battery, uint8_t r, uint8_t g, uint8_t b, float rtk_n, float rtk_e, float rtk_d)
+static inline void mavlink_msg_monitoring_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint16_t swarm_id, uint32_t tow, float pos_x, float pos_y, float pos_z, float head, float roll, float pitch, uint32_t status1, uint32_t status2, uint8_t rtk_nbase, uint8_t rtk_nrover, uint8_t battery, uint8_t r, uint8_t g, uint8_t b, float rtk_n, float rtk_e, float rtk_d)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
@@ -384,12 +396,13 @@ static inline void mavlink_msg_monitoring_send_buf(mavlink_message_t *msgbuf, ma
     _mav_put_float(buf, 36, rtk_n);
     _mav_put_float(buf, 40, rtk_e);
     _mav_put_float(buf, 44, rtk_d);
-    _mav_put_uint8_t(buf, 48, rtk_nbase);
-    _mav_put_uint8_t(buf, 49, rtk_nrover);
-    _mav_put_uint8_t(buf, 50, battery);
-    _mav_put_uint8_t(buf, 51, r);
-    _mav_put_uint8_t(buf, 52, g);
-    _mav_put_uint8_t(buf, 53, b);
+    _mav_put_uint16_t(buf, 48, swarm_id);
+    _mav_put_uint8_t(buf, 50, rtk_nbase);
+    _mav_put_uint8_t(buf, 51, rtk_nrover);
+    _mav_put_uint8_t(buf, 52, battery);
+    _mav_put_uint8_t(buf, 53, r);
+    _mav_put_uint8_t(buf, 54, g);
+    _mav_put_uint8_t(buf, 55, b);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_MONITORING, buf, MAVLINK_MSG_ID_MONITORING_MIN_LEN, MAVLINK_MSG_ID_MONITORING_LEN, MAVLINK_MSG_ID_MONITORING_CRC);
 #else
@@ -406,6 +419,7 @@ static inline void mavlink_msg_monitoring_send_buf(mavlink_message_t *msgbuf, ma
     packet->rtk_n = rtk_n;
     packet->rtk_e = rtk_e;
     packet->rtk_d = rtk_d;
+    packet->swarm_id = swarm_id;
     packet->rtk_nbase = rtk_nbase;
     packet->rtk_nrover = rtk_nrover;
     packet->battery = battery;
@@ -422,6 +436,16 @@ static inline void mavlink_msg_monitoring_send_buf(mavlink_message_t *msgbuf, ma
 
 // MESSAGE MONITORING UNPACKING
 
+
+/**
+ * @brief Get field swarm_id from monitoring message
+ *
+ * @return  Swarm id for GCS
+ */
+static inline uint16_t mavlink_msg_monitoring_get_swarm_id(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_uint16_t(msg,  48);
+}
 
 /**
  * @brief Get field tow from monitoring message
@@ -520,7 +544,7 @@ static inline uint32_t mavlink_msg_monitoring_get_status2(const mavlink_message_
  */
 static inline uint8_t mavlink_msg_monitoring_get_rtk_nbase(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  48);
+    return _MAV_RETURN_uint8_t(msg,  50);
 }
 
 /**
@@ -530,7 +554,7 @@ static inline uint8_t mavlink_msg_monitoring_get_rtk_nbase(const mavlink_message
  */
 static inline uint8_t mavlink_msg_monitoring_get_rtk_nrover(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  49);
+    return _MAV_RETURN_uint8_t(msg,  51);
 }
 
 /**
@@ -540,7 +564,7 @@ static inline uint8_t mavlink_msg_monitoring_get_rtk_nrover(const mavlink_messag
  */
 static inline uint8_t mavlink_msg_monitoring_get_battery(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  50);
+    return _MAV_RETURN_uint8_t(msg,  52);
 }
 
 /**
@@ -550,7 +574,7 @@ static inline uint8_t mavlink_msg_monitoring_get_battery(const mavlink_message_t
  */
 static inline uint8_t mavlink_msg_monitoring_get_r(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  51);
+    return _MAV_RETURN_uint8_t(msg,  53);
 }
 
 /**
@@ -560,7 +584,7 @@ static inline uint8_t mavlink_msg_monitoring_get_r(const mavlink_message_t* msg)
  */
 static inline uint8_t mavlink_msg_monitoring_get_g(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  52);
+    return _MAV_RETURN_uint8_t(msg,  54);
 }
 
 /**
@@ -570,7 +594,7 @@ static inline uint8_t mavlink_msg_monitoring_get_g(const mavlink_message_t* msg)
  */
 static inline uint8_t mavlink_msg_monitoring_get_b(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  53);
+    return _MAV_RETURN_uint8_t(msg,  55);
 }
 
 /**
@@ -624,6 +648,7 @@ static inline void mavlink_msg_monitoring_decode(const mavlink_message_t* msg, m
     monitoring->rtk_n = mavlink_msg_monitoring_get_rtk_n(msg);
     monitoring->rtk_e = mavlink_msg_monitoring_get_rtk_e(msg);
     monitoring->rtk_d = mavlink_msg_monitoring_get_rtk_d(msg);
+    monitoring->swarm_id = mavlink_msg_monitoring_get_swarm_id(msg);
     monitoring->rtk_nbase = mavlink_msg_monitoring_get_rtk_nbase(msg);
     monitoring->rtk_nrover = mavlink_msg_monitoring_get_rtk_nrover(msg);
     monitoring->battery = mavlink_msg_monitoring_get_battery(msg);

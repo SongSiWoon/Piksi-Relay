@@ -299,7 +299,7 @@ static void mavlink_test_monitoring(uint8_t system_id, uint8_t component_id, mav
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_monitoring_t packet_in = {
-        963497464,45.0,73.0,101.0,129.0,157.0,185.0,963498920,963499128,269.0,297.0,325.0,149,216,27,94,161,228
+        963497464,45.0,73.0,101.0,129.0,157.0,185.0,963498920,963499128,269.0,297.0,325.0,19731,27,94,161,228,39,106
     };
     mavlink_monitoring_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -315,6 +315,7 @@ static void mavlink_test_monitoring(uint8_t system_id, uint8_t component_id, mav
         packet1.rtk_n = packet_in.rtk_n;
         packet1.rtk_e = packet_in.rtk_e;
         packet1.rtk_d = packet_in.rtk_d;
+        packet1.swarm_id = packet_in.swarm_id;
         packet1.rtk_nbase = packet_in.rtk_nbase;
         packet1.rtk_nrover = packet_in.rtk_nrover;
         packet1.battery = packet_in.battery;
@@ -335,12 +336,12 @@ static void mavlink_test_monitoring(uint8_t system_id, uint8_t component_id, mav
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_monitoring_pack(system_id, component_id, &msg , packet1.tow , packet1.pos_x , packet1.pos_y , packet1.pos_z , packet1.head , packet1.roll , packet1.pitch , packet1.status1 , packet1.status2 , packet1.rtk_nbase , packet1.rtk_nrover , packet1.battery , packet1.r , packet1.g , packet1.b , packet1.rtk_n , packet1.rtk_e , packet1.rtk_d );
+    mavlink_msg_monitoring_pack(system_id, component_id, &msg , packet1.swarm_id , packet1.tow , packet1.pos_x , packet1.pos_y , packet1.pos_z , packet1.head , packet1.roll , packet1.pitch , packet1.status1 , packet1.status2 , packet1.rtk_nbase , packet1.rtk_nrover , packet1.battery , packet1.r , packet1.g , packet1.b , packet1.rtk_n , packet1.rtk_e , packet1.rtk_d );
     mavlink_msg_monitoring_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_monitoring_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.tow , packet1.pos_x , packet1.pos_y , packet1.pos_z , packet1.head , packet1.roll , packet1.pitch , packet1.status1 , packet1.status2 , packet1.rtk_nbase , packet1.rtk_nrover , packet1.battery , packet1.r , packet1.g , packet1.b , packet1.rtk_n , packet1.rtk_e , packet1.rtk_d );
+    mavlink_msg_monitoring_pack_chan(system_id, component_id, MAVLINK_COMM_0, &msg , packet1.swarm_id , packet1.tow , packet1.pos_x , packet1.pos_y , packet1.pos_z , packet1.head , packet1.roll , packet1.pitch , packet1.status1 , packet1.status2 , packet1.rtk_nbase , packet1.rtk_nrover , packet1.battery , packet1.r , packet1.g , packet1.b , packet1.rtk_n , packet1.rtk_e , packet1.rtk_d );
     mavlink_msg_monitoring_decode(&msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 
@@ -353,7 +354,7 @@ static void mavlink_test_monitoring(uint8_t system_id, uint8_t component_id, mav
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
         
         memset(&packet2, 0, sizeof(packet2));
-    mavlink_msg_monitoring_send(MAVLINK_COMM_1 , packet1.tow , packet1.pos_x , packet1.pos_y , packet1.pos_z , packet1.head , packet1.roll , packet1.pitch , packet1.status1 , packet1.status2 , packet1.rtk_nbase , packet1.rtk_nrover , packet1.battery , packet1.r , packet1.g , packet1.b , packet1.rtk_n , packet1.rtk_e , packet1.rtk_d );
+    mavlink_msg_monitoring_send(MAVLINK_COMM_1 , packet1.swarm_id , packet1.tow , packet1.pos_x , packet1.pos_y , packet1.pos_z , packet1.head , packet1.roll , packet1.pitch , packet1.status1 , packet1.status2 , packet1.rtk_nbase , packet1.rtk_nrover , packet1.battery , packet1.r , packet1.g , packet1.b , packet1.rtk_n , packet1.rtk_e , packet1.rtk_d );
     mavlink_msg_monitoring_decode(last_msg, &packet2);
         MAVLINK_ASSERT(memcmp(&packet1, &packet2, sizeof(packet1)) == 0);
 

@@ -10,7 +10,7 @@
     #error Wrong include order: MAVLINK_SWARM.H MUST NOT BE DIRECTLY USED. Include mavlink.h from the same directory instead or set ALL AND EVERY defines from MAVLINK.H manually accordingly, including the #define MAVLINK_H call.
 #endif
 
-#define MAVLINK_SWARM_XML_HASH -8058789401026445328
+#define MAVLINK_SWARM_XML_HASH -645971704076889420
 
 #ifdef __cplusplus
 extern "C" {
@@ -23,7 +23,7 @@ extern "C" {
 #endif
 
 #ifndef MAVLINK_MESSAGE_CRCS
-#define MAVLINK_MESSAGE_CRCS {{180, 5, 5, 5, 0, 0, 0}, {181, 173, 172, 172, 0, 0, 0}, {182, 61, 32, 32, 0, 0, 0}, {183, 207, 28, 28, 3, 20, 21}, {184, 96, 54, 54, 0, 0, 0}, {185, 180, 50, 50, 1, 16, 0}, {186, 188, 17, 17, 0, 0, 0}, {187, 52, 30, 30, 0, 0, 0}}
+#define MAVLINK_MESSAGE_CRCS {{180, 5, 5, 5, 0, 0, 0}, {181, 173, 172, 172, 0, 0, 0}, {182, 61, 32, 32, 0, 0, 0}, {183, 207, 28, 28, 3, 20, 21}, {184, 206, 56, 56, 0, 0, 0}, {185, 180, 50, 50, 1, 16, 0}, {186, 188, 17, 17, 0, 0, 0}, {187, 52, 30, 30, 0, 0, 0}}
 #endif
 
 #include "../protocol.h"
