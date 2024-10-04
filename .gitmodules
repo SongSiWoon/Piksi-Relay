@@ -1,0 +1,4 @@
+[submodule "include/libsbp"]
+	path = include/libsbp
+	url = https://github.com/swift-nav/libsbp.git
+    	branch = v2.7.4
