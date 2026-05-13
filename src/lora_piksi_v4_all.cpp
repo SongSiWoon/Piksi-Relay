@@ -1,17 +1,15 @@
-// Debug version of lora_piksi.cpp
-// 기능은 원본과 동일하며, obs_callback에서 아래 3가지를 추가로 감시한다:
-//   1. [OVERFLOW?]    : memcpy 전, len > 164 조건 감지 (사전 경고)
-//   2. [CORRUPTION]   : memcpy 후, canary 패턴이 깨졌는지 확인 (실제 메모리 오염 확인)
-//   3. [STATS]        : 10초마다 누적 통계 출력
+// v4: overflow + mutex 모두 수정
+//   [수정] obs_callback: safe_len으로 overflow 방지
+//   [수정] write_to_lora: mutex 범위 축소 + TOCTOU 수정
 //
-// 로그 파일: 실행 시 piksi_debug_YYYYMMDD_HHMMSS.log 자동 생성
+// 로그 파일: 실행 시 piksi_v4_all_YYYYMMDD_HHMMSS.log 자동 생성
 //
 // 빌드:
 //   gcc -c ../include/libsbp/c/src/sbp.c -I ../include/libsbp/c/include -o sbp.o
 //   gcc -c ../include/libsbp/c/src/edc.c -I ../include/libsbp/c/include -o edc.o
-//   g++ lora_piksi_debug.cpp sbp.o edc.o -I ../include/lora_mavlink/swarm -I ../include/libsbp/c/include -o piksi_relay_debug -pthread
+//   g++ lora_piksi_v4_all.cpp sbp.o edc.o -I ../include/lora_mavlink/swarm -I ../include/libsbp/c/include -o piksi_relay_v4 -pthread
 // 실행:
-//   ./piksi_relay_debug -d /dev/ttyACM1 -l /dev/ttyUSB0
+//   ./piksi_relay_v4 -d /dev/ttyACM1 -l /dev/ttyUSB0
 
 #include <stdio.h>
 #include <stdarg.h>
@@ -252,8 +250,10 @@ void obs_callback(u16 sender_id, u8 len, u8 msg[], void *context)
     guarded.obs.crc       = crc;
     guarded.obs.len       = len;
 
-    // 원본 코드와 동일한 memcpy (overflow 그대로 재현)
-    memcpy(guarded.obs.data, msg, len);
+    // [v4 수정] safe_len으로 overflow 방지
+    u8 safe_len = (len <= OBS_DATA_SIZE) ? len : (u8)OBS_DATA_SIZE;
+    guarded.obs.len = safe_len;
+    memcpy(guarded.obs.data, msg, safe_len);
 
     // canary 패턴 깨졌는지 확인
     bool corrupted = false;
@@ -432,23 +432,34 @@ void write_to_lora()
             stats_t = now_t;
         }
 
-        if (!_mavlink_que.empty() && now_t - before_t > 100) {
-            std::lock_guard<std::mutex> lock(mtx);
-            mavlink_message_t message = _mavlink_que.front();
-            printf("lora queue size : %ld\n", _mavlink_que.size());
-            mavlink_msg_to_send_buffer(lora_buffer, &message);
-            memcpy(packet, _header, sizeof(_header));
-            memcpy(packet + sizeof(_header), lora_buffer, sizeof(lora_buffer));
-            ssize_t bytes_written = write(_lora_serial_fd, packet, sizeof(packet));
-            if (bytes_written < 0) {
-                perror("Failed to write to serial port\n");
-                break;
+        // [v4 수정] mutex는 queue pop까지만, write/tcdrain은 락 밖에서
+        if (now_t - before_t > 100) {
+            mavlink_message_t message;
+            bool has_msg = false;
+            {
+                std::lock_guard<std::mutex> lock(mtx);
+                if (!_mavlink_que.empty()) {
+                    message = _mavlink_que.front();
+                    _mavlink_que.pop();
+                    has_msg = true;
+                }
             }
-            _mavlink_que.pop();
-            before_t = time_ms();
-            if (tcdrain(_lora_serial_fd) != 0) {
-                perror("Failed to flush serial port\n");
-                break;
+
+            if (has_msg) {
+                log_printf("lora queue size : %ld\n", _mavlink_que.size());
+                mavlink_msg_to_send_buffer(lora_buffer, &message);
+                memcpy(packet, _header, sizeof(_header));
+                memcpy(packet + sizeof(_header), lora_buffer, sizeof(lora_buffer));
+                ssize_t bytes_written = write(_lora_serial_fd, packet, sizeof(packet));
+                if (bytes_written < 0) {
+                    perror("Failed to write to serial port\n");
+                    break;
+                }
+                before_t = time_ms();
+                if (tcdrain(_lora_serial_fd) != 0) {
+                    perror("Failed to flush serial port\n");
+                    break;
+                }
             }
         }
     }
@@ -465,7 +476,7 @@ int main(int argc, char **argv)
         time_t now = time(NULL);
         struct tm* t = localtime(&now);
         char logname[64];
-        strftime(logname, sizeof(logname), "piksi_debug_%Y%m%d_%H%M%S.log", t);
+        strftime(logname, sizeof(logname), "piksi_v4_all_%Y%m%d_%H%M%S.log", t);
         g_log_fp = fopen(logname, "w");
         if (g_log_fp)
             printf("=== log file: %s ===\n", logname);
@@ -473,7 +484,7 @@ int main(int argc, char **argv)
             printf("=== WARNING: log file open failed ===\n");
     }
 
-    log_printf("=== lora_piksi DEBUG version ===\n");
+    log_printf("=== lora_piksi v4: all fixes ===\n");
     log_printf("  OBS data[] 크기   : %d bytes\n", OBS_DATA_SIZE);
     log_printf("  Canary 크기       : %d bytes (패턴=0x%02X)\n", CANARY_SIZE, CANARY_PATTERN);
     log_printf("  overflow 발생 조건: 위성 10개 이상 (len > 164)\n");

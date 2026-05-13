@@ -1,17 +1,15 @@
-// Debug version of lora_piksi.cpp
-// 기능은 원본과 동일하며, obs_callback에서 아래 3가지를 추가로 감시한다:
-//   1. [OVERFLOW?]    : memcpy 전, len > 164 조건 감지 (사전 경고)
-//   2. [CORRUPTION]   : memcpy 후, canary 패턴이 깨졌는지 확인 (실제 메모리 오염 확인)
-//   3. [STATS]        : 10초마다 누적 통계 출력
+// v2: overflow만 수정, mutex 버그는 유지
+//   [수정] obs_callback: safe_len으로 memcpy 크기 제한 → overflow/corruption 방지
+//   [유지] write_to_lora: mutex 오래 잡는 버그 그대로
 //
-// 로그 파일: 실행 시 piksi_debug_YYYYMMDD_HHMMSS.log 자동 생성
+// 로그 파일: 실행 시 piksi_v2_overflow_YYYYMMDD_HHMMSS.log 자동 생성
 //
 // 빌드:
 //   gcc -c ../include/libsbp/c/src/sbp.c -I ../include/libsbp/c/include -o sbp.o
 //   gcc -c ../include/libsbp/c/src/edc.c -I ../include/libsbp/c/include -o edc.o
-//   g++ lora_piksi_debug.cpp sbp.o edc.o -I ../include/lora_mavlink/swarm -I ../include/libsbp/c/include -o piksi_relay_debug -pthread
+//   g++ lora_piksi_v2_overflow.cpp sbp.o edc.o -I ../include/lora_mavlink/swarm -I ../include/libsbp/c/include -o piksi_relay_v2 -pthread
 // 실행:
-//   ./piksi_relay_debug -d /dev/ttyACM1 -l /dev/ttyUSB0
+//   ./piksi_relay_v2 -d /dev/ttyACM1 -l /dev/ttyUSB0
 
 #include <stdio.h>
 #include <stdarg.h>
@@ -252,8 +250,10 @@ void obs_callback(u16 sender_id, u8 len, u8 msg[], void *context)
     guarded.obs.crc       = crc;
     guarded.obs.len       = len;
 
-    // 원본 코드와 동일한 memcpy (overflow 그대로 재현)
-    memcpy(guarded.obs.data, msg, len);
+    // [v2 수정] safe_len으로 제한 → overflow 방지
+    u8 safe_len = (len <= OBS_DATA_SIZE) ? len : (u8)OBS_DATA_SIZE;
+    guarded.obs.len = safe_len;
+    memcpy(guarded.obs.data, msg, safe_len);
 
     // canary 패턴 깨졌는지 확인
     bool corrupted = false;
@@ -465,7 +465,7 @@ int main(int argc, char **argv)
         time_t now = time(NULL);
         struct tm* t = localtime(&now);
         char logname[64];
-        strftime(logname, sizeof(logname), "piksi_debug_%Y%m%d_%H%M%S.log", t);
+        strftime(logname, sizeof(logname), "piksi_v2_overflow_%Y%m%d_%H%M%S.log", t);
         g_log_fp = fopen(logname, "w");
         if (g_log_fp)
             printf("=== log file: %s ===\n", logname);
@@ -473,7 +473,7 @@ int main(int argc, char **argv)
             printf("=== WARNING: log file open failed ===\n");
     }
 
-    log_printf("=== lora_piksi DEBUG version ===\n");
+    log_printf("=== lora_piksi v2: overflow fix only ===\n");
     log_printf("  OBS data[] 크기   : %d bytes\n", OBS_DATA_SIZE);
     log_printf("  Canary 크기       : %d bytes (패턴=0x%02X)\n", CANARY_SIZE, CANARY_PATTERN);
     log_printf("  overflow 발생 조건: 위성 10개 이상 (len > 164)\n");
